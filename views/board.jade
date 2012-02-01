@@ -1,0 +1,39 @@
+#wrapper
+  #content
+    #toolbar
+      ul
+        li#board_title New Testing Board
+        li#tb_download.button
+          a(href='#') Download
+        li#tb_open.button
+          a(href='#') Versions
+        li#tb_save.button
+          a(href='#') Snapshot
+        li#tb_playback.button
+          a#board_playback(href='#') Playback
+    #codearea
+      #editable_content(contenteditable="true", spellcheck="false")
+        div
+          p#line1
+            = snapshot
+            &nbsp;
+#sidebar
+  ul.menu
+    li
+      h4.section_title Users
+        a#add_contact(href='#')
+          img(src="/images/add_contact_icon.png", alt="Add Contact")
+      ul#users_list
+    li#chat_section
+      h4.section_title Chat
+        a#chat_sound_control(href='#')
+          img(src="/images/chat_sound_icon.png", alt="Sound On")
+      audio#chat_alert_sound(src="http://www.pacdv.com/sounds/interface_sound_effects/sound99.wav", autobuffer)
+      ul#chat_messages
+        li.datestamp Feb. 1 2012
+      form#set-nickname
+        p Please enter your nickname
+        input#nick
+      form#chat_form.hide
+        textarea#input_chat_message(rows="1")
+#extra
