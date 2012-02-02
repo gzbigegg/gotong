@@ -10,7 +10,7 @@ script
   socket.on('nicknames', function(nicknames) {
     $('#users_list').empty();
     for (var i in nicknames) {
-      $('#users_list').append($('<li>').text(nicknames[i]));
+      $('#users_list').append($('<li>').append(($('<span>').addClass('user_name')).text(nicknames[i])));
     }
   });
 
@@ -76,7 +76,7 @@ script
       h4.section_title Chat
         a#chat_sound_control(href='#')
           img(src="/images/chat_sound_icon.png", alt="Sound On")
-      audio#chat_alert_sound(src="http://www.pacdv.com/sounds/interface_sound_effects/sound99.wav", autobuffer)
+      
       ul#chat_messages
         li.datestamp Feb. 1 2012
       form#set-nickname
