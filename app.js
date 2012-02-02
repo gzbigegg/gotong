@@ -1,6 +1,6 @@
 var express = require('express'), routes = require('./routes')
-var io = require("socket.io");
-var app = module.exports = express.createServer(), io = io.listen(app);
+var sio = require("socket.io");
+var app = module.exports = express.createServer();
 
 // Configuration
 
@@ -30,9 +30,23 @@ app.get('/', routes.index);
 app.listen(4000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
+var io = sio.listen(app);
+var nicknames = {};
+
 io.sockets.on('connection', function(socket) {
-	socket.emit('news', { hello: 'world' });
-	socket.on('my other event', function(data) {
-		console.log(data);
+	socket.on('user message', function(msg) {
+		socket.broadcast.emit('user message', socket.nickname, msg);
+	});
+	
+	socket.on('nickname', function(nick, fn) {
+		if (nicknames[nick]) {
+			fn(true);
+		}
+		else {
+			fn(false);
+			nicknames[nick] = socket.nickname = nick;
+			socket.broadcast.emit('announcement', nick + ' connected');
+			io.sockets.emit('nicknames', nicknames);
+		}
 	});
 });

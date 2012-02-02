@@ -276,7 +276,7 @@ ul.menu ul#chat_messages li.chat_message span.message a {
 ul.menu ul#chat_messages li.chat_message span.timestamp {
 	color: #C4C4C4;
 }
-ul.menu li#chat_section textarea {
+ul.menu li#chat_section textarea, ul.menu li#chat_section input {
 	width: 190px;
 	height: 30px;
 	padding: 5px;
